@@ -4,13 +4,26 @@ function plans() {
   const [megas, setMegas] = useState(0)
   const [canais, setCanais] = useState(0)
   const [linhas, setLinhas] = useState(0)
-  const [valor, setValor] = useState(megas + canais + linhas)
+  const [valor, setValor] = useState(0)
 
   useEffect(() => {
     const calculo = megas + canais + linhas;
-    console.log(calculo)
+    setValor(calculo)
 
   }, [megas, canais, linhas]);
+
+  function handleInput(event, passValue, multiplyValue) {
+    const parseNumber = parseInt(event.target.value)
+    const annualValue = multiplyValue * 12;
+
+    if (parseNumber >= 0) {
+      passValue(parseNumber * multiplyValue)
+      console.log(parseNumber * multiplyValue)
+    } else {
+      passValue(0)
+    }
+  }
+
   return (
     <div>
       <div>
@@ -18,18 +31,19 @@ function plans() {
       </div>
       <div>
         <p>Digite a quantidade de Megas - {megas}</p>
-        <input type="number" onChange={(event) => setMegas(parseInt(event.target.value))} />
+        <input type="number" onChange={(event) => handleInput(event, setMegas, 1) } />
       </div>
       <div>
         <p>Digite a quantidade de Canais - {canais}</p>
-        <input type="number" onChange={(event) => setCanais(parseInt(event.target.value))} />
+        <input type="number" onChange={(event) => handleInput(event, setCanais, 2)} />
       </div>
       <div>
         <p>Digite a quantidade de Linhas de Telefone - {linhas}</p>
-        <input type="number" onChange={(event) => setLinhas(parseInt(event.target.value))} />
+        <input type="number" onChange={(event) => handleInput(event, setLinhas, 20)} />
       </div>
       <div>
-        <p>Valor do Plano {calculo}</p>
+        <p>Valor do Plano R$ {valor}</p>
+        <p>Valor do Plano Anual R$ {valor * 12}</p>
       </div>
     </div>
   );
