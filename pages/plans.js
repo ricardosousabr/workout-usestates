@@ -7,43 +7,48 @@ function plans() {
   const [valor, setValor] = useState(0)
 
   useEffect(() => {
-    const calculo = megas + canais + linhas;
+    const calculo = (megas * 1) + (canais * 2) + (linhas * 20);
     setValor(calculo)
 
   }, [megas, canais, linhas]);
 
-  function handleInput(event, passValue, multiplyValue) {
+  function handleInput(event, passValue) {
     const parseNumber = parseInt(event.target.value)
-    const annualValue = multiplyValue * 12;
 
     if (parseNumber >= 0) {
-      passValue(parseNumber * multiplyValue)
-      console.log(parseNumber * multiplyValue)
+      passValue(parseNumber)
     } else {
-      passValue(0)
+      passValue("")
     }
+  }
+
+  function clearInput(clear) {
+    clear(0)
   }
 
   return (
     <div>
       <div>
-        <h1>Internet EFEX.</h1>
+        <h1>EFEX Internet.</h1>
       </div>
       <div>
-        <p>Digite a quantidade de Megas - {megas}</p>
-        <input type="number" onChange={(event) => handleInput(event, setMegas, 1) } />
+        <p>Enter the amount of Megas - {megas}</p>
+        <input type="number" value={megas} onChange={(event) => handleInput(event, setMegas) } />
+        <button onClick={() => clearInput(setMegas)}>Clear</button>
       </div>
       <div>
-        <p>Digite a quantidade de Canais - {canais}</p>
-        <input type="number" onChange={(event) => handleInput(event, setCanais, 2)} />
+        <p>Enter the number of channels - {canais}</p>
+        <input type="number" value={canais} onChange={(event) => handleInput(event, setCanais)} />
+        <button onClick={() => clearInput(setCanais)}>Clear</button>
       </div>
       <div>
-        <p>Digite a quantidade de Linhas de Telefone - {linhas}</p>
-        <input type="number" onChange={(event) => handleInput(event, setLinhas, 20)} />
+        <p>Enter the number of Telephone Lines - {linhas}</p>
+        <input type="number" value={linhas} onChange={(event) => handleInput(event, setLinhas)} />
+        <button onClick={() => clearInput(setLinhas)}>Clear</button>
       </div>
       <div>
-        <p>Valor do Plano R$ {valor}</p>
-        <p>Valor do Plano Anual R$ {valor * 12}</p>
+        <p>Plan Value R$ {valor},00</p>
+        <p>Annual Plan Value R$ {valor * 12},00</p>
       </div>
     </div>
   );
