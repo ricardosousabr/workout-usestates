@@ -10,17 +10,26 @@ function object() {
     const calculo = valorOne + valorTwo;
       setTotal(calculo)
     }, [valorOne, valorTwo]
-
   )
+
+  function handlerInput(setValue, event) {
+    const valueInput = parseInt(event.target.value);
+
+    if (valueInput >= 0) {
+      setValue(valueInput)
+    } else {
+      setValue(0)
+    }
+  }
 
   return (
     <div>
       <h2>Somar Valores</h2>
-      <h2>{valorOne}</h2>
-      <input type="number" onChange={(event) => setValorOne(parseInt(event.target.value))} />
-      <h2>{valorTwo}</h2>
-      <input type="number" onChange={(event) => setValorTwo(parseInt(event.target.value))} />
-      <h2>{total}</h2>
+      <h2>Valor {valorOne}</h2>
+      <input type="number" onChange={(event) => handlerInput(setValorOne, event)} />
+      <h2>Valor {valorTwo}</h2>
+      <input type="number" onChange={(event) => handlerInput(setValorTwo, event)} />
+      <h2>Valor Total {total}</h2>
     </div>
   )
 }
