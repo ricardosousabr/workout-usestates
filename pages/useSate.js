@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 
-function object() {
+function Object() {
   const [valorOne, setValorOne] = useState(0)
   const [valorTwo, setValorTwo] = useState(0)
   const [total, setTotal] = useState(0)

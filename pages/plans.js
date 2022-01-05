@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function plans() {
+function Plans() {
   const [megas, setMegas] = useState(0)
   const [canais, setCanais] = useState(0)
   const [linhas, setLinhas] = useState(0)
