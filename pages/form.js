@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 function Form() {
   const [data, setData] = useState({})
   const [name, setName] = useState("")
-  const [age, setAge] = useState(0)
+  const [age, setAge] = useState("")
   const [city, setCity] = useState("")
 
   useEffect(() => {
@@ -29,16 +29,23 @@ function Form() {
     }
   }
 
+  function clearInput(clear) {
+    clear("")
+  }
+
   return (
     <div>
-      <h1>Usuario</h1>
+      <h1>Criar usuario</h1>
       <p>Nome: {data.name}</p>
-      <input type="text" onChange={(event) => dataInput(event, setName)} />
+      <input type="text" value={name} onChange={(event) => dataInput(event, setName)} />
+      <button onClick={() => clearInput(setName)}>Clear</button>
       <p>Idade: {data.age}</p>
-      <input type="number" onChange={(event) => dataInput(event, setAge)} />
+      <input type="number" value={age} onChange={(event) => dataInput(event, setAge)} />
       <button onClick={checkAge}>Check</button>
+      <button onClick={() => clearInput(setAge)}>Clear</button>
       <p>Cidade: {data.city}</p>
-      <input type="text" onChange={(event) => dataInput(event, setCity)} />
+      <input type="text" value={city} onChange={(event) => dataInput(event, setCity)} />
+      <button onClick={() => clearInput(setCity)}>Clear</button>
     </div>
   )
 }
