@@ -54,4 +54,4 @@ function Plans() {
   );
 }
 
-export default plans;
+export default Plans;

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 function Form() {
   const [data, setData] = useState({})
   const [name, setName] = useState("")
-  const [age, setAge] = useState("")
+  const [age, setAge] = useState(0)
   const [city, setCity] = useState("")
 
   useEffect(() => {
@@ -21,6 +21,14 @@ function Form() {
     passValue(userData)
   }
 
+  function checkAge() {
+    if (age >= 18) {
+      alert("Usuario Maior de Idade")
+    } else {
+      alert("Usuario Menor de Idade")
+    }
+  }
+
   return (
     <div>
       <h1>Usuario</h1>
@@ -28,10 +36,11 @@ function Form() {
       <input type="text" onChange={(event) => dataInput(event, setName)} />
       <p>Idade: {data.age}</p>
       <input type="number" onChange={(event) => dataInput(event, setAge)} />
-      <p>city: {data.city}</p>
+      <button onClick={checkAge}>Check</button>
+      <p>Cidade: {data.city}</p>
       <input type="text" onChange={(event) => dataInput(event, setCity)} />
     </div>
   )
 }
 
-export default form;
+export default Form;

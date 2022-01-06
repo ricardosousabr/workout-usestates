@@ -34,4 +34,4 @@ function Object() {
   )
 }
 
-export default object;
+export default Object;
