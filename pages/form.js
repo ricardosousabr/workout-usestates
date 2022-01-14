@@ -5,16 +5,18 @@ function Form() {
   const [name, setName] = useState("")
   const [age, setAge] = useState("")
   const [city, setCity] = useState("")
+  const [password, setPassword] = useState("")
 
   useEffect(() => {
     const users = {
       name: name,
       age: age,
       city: city,
+      password: password,
     }
     setData(users)
 
-  }, [name, age, city])
+  }, [name, age, city, password])
 
   function dataInput(event, passValue) {
     const userData = event.target.value
@@ -33,19 +35,46 @@ function Form() {
     clear("")
   }
 
+  function store(key, value) {
+    if (age >= 18) {
+      localStorage.setItem(key, value)
+    } else {
+      alert("Não são permitidos usuarios menores de 18 anos")
+    }
+  }
+
+  function removeKey(key) {
+    localStorage.removeItem(key)
+  }
+
   return (
     <div>
-      <h1>Criar usuario</h1>
-      <p>Nome: {data.name}</p>
-      <input type="text" value={name} onChange={(event) => dataInput(event, setName)} />
-      <button onClick={() => clearInput(setName)}>Clear</button>
-      <p>Idade: {data.age}</p>
-      <input type="number" value={age} onChange={(event) => dataInput(event, setAge)} />
-      <button onClick={checkAge}>Check</button>
-      <button onClick={() => clearInput(setAge)}>Clear</button>
-      <p>Cidade: {data.city}</p>
+      <div>
+        <h1>Criar usuario</h1>
+        <p>Name: {data.name}</p>
+        <input type="text" value={name} onChange={(event) => dataInput(event, setName)} />
+        <button onClick={() => clearInput(setName)}>Clear</button>
+      </div>
+      <div>
+        <p>Age: {data.age}</p>
+        <input type="number" value={age} onChange={(event) => dataInput(event, setAge)} />
+        <button onClick={checkAge}>Check</button>
+        <button onClick={() => clearInput(setAge)}>Clear</button>
+      </div>
+      <div>
+      <p>City: {data.city}</p>
       <input type="text" value={city} onChange={(event) => dataInput(event, setCity)} />
       <button onClick={() => clearInput(setCity)}>Clear</button>
+      </div>
+      <div>
+        <p>Password: {data.password}</p>
+        <input type="text" value={password} onChange={(event) => dataInput(event, setPassword)} />
+        <button onClick={() => clearInput(setPassword)}>Clear</button>
+      </div>
+      <div>
+        <button onClick={() => store("name", name)}>Criar Usuario</button>
+        <button onClick={() => removeKey("name")}>Deletar Usuario</button>
+      </div>
     </div>
   )
 }
