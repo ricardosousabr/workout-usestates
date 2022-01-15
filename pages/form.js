@@ -36,7 +36,7 @@ function Form() {
   }
 
   function store(key, value) {
-    if (age >= 18) {
+    if (age >= 18 && password == 8) {
       localStorage.setItem(key, value)
     } else {
       alert("Não são permitidos usuarios menores de 18 anos")
