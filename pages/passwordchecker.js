@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 function PasswordChecker() {
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
 
   function checker() {
-    if (password >= 8) {
-      alert("ola")
+    if (password.length <= 8) {
+      alert("senha não tem 8 caracteres")
     }
-
   }
 
   return (
