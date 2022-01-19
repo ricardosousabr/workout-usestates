@@ -6,6 +6,7 @@ function Form() {
   const [age, setAge] = useState("")
   const [city, setCity] = useState("")
   const [password, setPassword] = useState("")
+  const regex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/;
 
   useEffect(() => {
     const users = {
@@ -36,10 +37,10 @@ function Form() {
   }
 
   function store(key, value) {
-    if (age >= 18 && password == 8) {
+    if (age >= 18 && password.length == 8 && regex.test(password)) {
       localStorage.setItem(key, value)
     } else {
-      alert("Não são permitidos usuarios menores de 18 anos")
+      alert("Idade ou senha incorretos")
     }
   }
 
@@ -57,6 +58,7 @@ function Form() {
       </div>
       <div>
         <p>Age: {data.age}</p>
+        <p>Minimum age 18 years</p>
         <input type="number" value={age} onChange={(event) => dataInput(event, setAge)} />
         <button onClick={checkAge}>Check</button>
         <button onClick={() => clearInput(setAge)}>Clear</button>
@@ -68,6 +70,7 @@ function Form() {
       </div>
       <div>
         <p>Password: {data.password}</p>
+        <p>Only passwords containing letters</p>
         <input type="text" value={password} onChange={(event) => dataInput(event, setPassword)} />
         <button onClick={() => clearInput(setPassword)}>Clear</button>
       </div>
