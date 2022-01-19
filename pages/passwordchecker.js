@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function PasswordChecker() {
   const [password, setPassword] = useState("");
+  const regex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/;
 
   function checker() {
-    if (password.length <= 8) {
-      alert("senha não tem 8 caracteres")
+    if (password.length <= 8 && regex.test(password)) {
+      alert("Senha não tem 8 caracteres")
     }
   }
 
