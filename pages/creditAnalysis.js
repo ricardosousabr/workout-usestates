@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 
-function creditAnalysis() {
-
+function CreditAnalysis() {
   const [credit, setCredit] = useState(0);
   const [income, setIncome] = useState(0);
   const client = {
     name: "Maria",
     lastName: "Carmo",
+    age: 21,
     birthDate: "05/03/2000",
     address: "RUA QUATORZE",
     income: income,
   };
 
   function analysis() {
-    if (income / 3 >= 300) {
+    if (income / 4 >= 300 && client.age >= 18) {
       alert("Credito Aprovado")
+      if (income <= 1500) {
+        setCredit(Math.round(income / 4))
+      } else if (income > 1500) {
+        setCredit(Math.round(income / 3))
+      }
     } else {
       alert("Credito Não Autorizado")
     }
   }
+
   return (
     <div className="App">
       <div>
@@ -44,4 +50,4 @@ function creditAnalysis() {
   );
 }
 
-export default creditAnalysis;
+export default CreditAnalysis;
